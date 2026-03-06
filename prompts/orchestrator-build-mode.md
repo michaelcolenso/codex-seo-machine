@@ -24,6 +24,89 @@ You must keep the system runnable locally.
 
 ---
 
+
+---
+
+## STRICT EXECUTION PROTOCOL (NON-OPTIONAL)
+
+For every phase, execute this exact loop:
+
+1. Implement only that phase's scope.
+2. Verify imports and module wiring.
+3. Run required validation commands for the phase.
+4. If any command fails, fix before continuing.
+5. Print the required phase report format exactly.
+6. Stop if acceptance criteria are not met.
+
+You are forbidden to begin the next phase until all current-phase gates pass.
+
+---
+
+## ANTI-DRIFT RULES
+
+- Do not rename required modules.
+- Do not relocate required modules to different packages.
+- Do not swap required libraries for alternatives unless local execution would otherwise fail.
+- Do not omit command surfaces that are explicitly required.
+- Do not replace deterministic logic with probabilistic or LLM-dependent behavior.
+- Do not skip persistence paths required by the spec.
+
+Any necessary deviation must be minimal, documented immediately in README, and listed in the final report under "minimal deviations from spec".
+
+---
+
+## EXPLICIT NO-SUBSTITUTION RULES
+
+You must use the required stack and interfaces as declared in this prompt.
+
+Forbidden substitutions include (non-exhaustive):
+
+- Replacing Typer CLI with argparse-only entrypoints
+- Replacing DuckDB/SQLite hybrid persistence with single-store shortcuts
+- Replacing Astro output with a non-Astro static generator
+- Replacing Playwright SERP collection with parser-only mocks in production paths
+
+Test doubles are allowed in tests only.
+
+---
+
+## REQUIRED PHASE REPORT FORMAT
+
+After each phase, print exactly these sections:
+
+### Phase <N> Completion Summary
+- Status: PASS | FAIL
+- Acceptance gates: <list each gate with pass/fail>
+- Notes: <brief>
+
+### Files Created/Modified (Phase <N>)
+- <relative path>
+
+### Verification Commands (Phase <N>)
+```bash
+<exact command 1>
+<exact command 2>
+```
+
+### Next Phase Decision
+- Proceeding to Phase <N+1>: YES | NO
+
+Do not omit this report format.
+
+---
+
+## REQUIRED COMMANDS AFTER EACH PHASE
+
+At minimum run these command classes (adapt paths as needed):
+
+1. Import check / module load check
+2. Targeted tests for the phase
+3. CLI help or command smoke tests for newly added command groups
+4. File existence checks for required manifests
+
+If a command cannot run locally, explicitly state why and provide the closest deterministic fallback command.
+
+
 ## PRIMARY OBJECTIVE
 
 Build a production-quality foundation for a platform with three integrated systems:
@@ -155,6 +238,14 @@ seo-arbitrage-platform/
 ```
 
 Every Python package directory must include `__init__.py`.
+
+---
+
+## PHASE FILE MANIFESTS (MUST EXIST)
+
+Each phase section below defines mandatory files/modules.
+
+Rule: if a phase lists a file/module, that path must exist by end of the phase and be importable/executable as applicable.
 
 ---
 
