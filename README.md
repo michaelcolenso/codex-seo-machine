@@ -85,3 +85,4 @@ This repository mirrors the practical workflow style of the original SEO Machine
 - `system/quality-bar.md`
 - `tasks/research-topic.md`
 - `tasks/write-article.md`
+- `prompts/orchestrator-build-mode.md` deterministic monorepo build prompt for autonomous coding agents
