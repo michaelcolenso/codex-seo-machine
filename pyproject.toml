@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "seo-machine-codex"
+version = "0.1.0"
+description = "Codex-native SEO workflow workspace"
+requires-python = ">=3.10"
+
+[tool.setuptools]
+py-modules = []
