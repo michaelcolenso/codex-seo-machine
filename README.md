@@ -30,6 +30,14 @@ This repository mirrors the practical workflow style of the original SEO Machine
    ```bash
    make test
    ```
+7. Execute a full local workflow run (brief -> draft -> validate -> score -> link suggestions -> publish copy):
+   ```bash
+   make full-run
+   ```
+8. Run full verification (tests + full run + validator):
+   ```bash
+   make check
+   ```
 
 ## Command aliases
 
@@ -85,3 +93,11 @@ This repository mirrors the practical workflow style of the original SEO Machine
 - `system/quality-bar.md`
 - `tasks/research-topic.md`
 - `tasks/write-article.md`
+
+## Automation scripts
+
+- `scripts/build_brief.py` generates a research-brief scaffold aligned to the output contract.
+- `scripts/validate_article.py` checks required article sections and quality heuristics.
+- `scripts/score_seo.py` scores an article against rubric dimensions and can write a report.
+- `scripts/extract_internal_links.py` suggests internal links from local workspace artifacts.
+- `scripts/full_run.py` executes an end-to-end local run and writes artifacts into `workspace/`.
