@@ -36,4 +36,13 @@ Must include (per Article Contract):
 - Diff vs. the original is substantive, not cosmetic — at least the intro, outline, and CTA are reworked
 
 ## Post-Rewrite
-Run `scripts/score_seo.py` and `scripts/extract_internal_links.py`, then proceed to `/publish`.
+Generate the reports `/publish` requires — both scripts only write a file when `--output` is supplied:
+
+```
+python scripts/score_seo.py workspace/drafts/<slug>-rewrite.md \
+  --output workspace/reports/<slug>-seo-score.md
+python scripts/extract_internal_links.py workspace/drafts/<slug>-rewrite.md \
+  --output workspace/reports/<slug>-internal-links.md
+```
+
+Then proceed to `/publish`.

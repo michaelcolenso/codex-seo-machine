@@ -18,7 +18,7 @@ Must include:
 2. Metric table — primary metrics with current value, prior period, delta, and direction
 3. Page-level vs. distribution-level split — is the page underperforming, or is the surface (SERP, AI answer, social) the bottleneck
 4. Root-cause hypotheses — at least two, ranked by likelihood, each with the evidence that supports it
-5. Recommended next action — one of: refresh, rewrite, redirect, expand into a cluster, leave alone and re-check later
+5. Recommended next action — one of: refresh, rewrite, redirect (with target URL), expand into a cluster, leave alone and re-check later
 6. Expected impact and how it will be measured
 7. Confidence level and what would change the recommendation
 
@@ -37,4 +37,10 @@ Must include:
 - Report is short enough to read in under five minutes
 
 ## Post-Review
-Hand off the recommended action to the matching task: `/optimize`, `/rewrite`, `/cluster`, or close as "no action."
+Hand off the recommended action to the matching follow-up:
+
+- refresh → `/optimize`
+- rewrite → `/rewrite`
+- expand into a cluster → `/cluster`
+- redirect → record the source URL, target URL, and reason in the report, then execute the redirect outside the content workflow (CMS, edge config, or hosting rules); no further task is queued
+- leave alone → close as "no action" and schedule the next `/performance` checkpoint
